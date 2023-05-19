@@ -1,0 +1,194 @@
+module data_Mem_tb ();
+/*
+ reg [7:0] 		DataIN_tb;
+ reg [3:0] 		Add_tb;
+ reg      		RST_tb; 
+ reg       		CS_tb; 
+ reg [1:0] 		RWSM_tb; //read(00) write(01) shift(10) mix(11)
+ reg 			operation_tb; 
+ wire  [7:0]	DataOUT_tb;
+ 
+ parameter clock_per = 20;
+ 
+ integer i;*/
+ 
+ reg  [7:0]    memory     [15:0];
+ reg  [7:0]    sbox_mem   [15:0];
+ reg  [7:0]    shift_mem  [15:0];
+ reg  [7:0]    mix_mem    [15:0];
+ /*
+ reg  [15:0]   address = 4'b0;
+ reg		   check_flag;*/
+ 
+ initial
+  begin
+   $dumpfile("data_Mem.vcd");
+   $dumpvars;
+   
+   $readmemh("E:\initial_data.txt",memory);
+   $readmemh("E:\sbox_data.txt",sbox_mem);
+   $readmemh("E:\shift_row.txt",shift_mem);
+   $readmemh("E:\mix_column.txt",mix_mem);
+   
+   /*initialize();
+   
+   Reset();
+   
+   for(i=0;i<=15;i=i+1)
+    begin
+     input_data(memory[i],address);
+	 address = address + 4'b1;
+    end
+   //-------------test 1--read and write ----------//
+   $display("test 1--read and write");
+   address = 4'b00;
+   for(i=0;i<=15;i=i+1)
+    begin
+     output_data(memory[i],address);
+	 address = address + 4'b1;
+	 if(check_flag)
+      $display("successed item %d",i);
+     else
+      $display("failed item %d",i);
+    end
+	
+   #clock_per
+   CS_tb = 1'b0;
+	
+   //-------------test 2-- sbox translate ----------//
+   sboxing();
+   $display("test 2--sboxing");
+   address = 4'b00;
+   for(i=0;i<=15;i=i+1)
+    begin
+     output_data(sbox_mem[i],address);
+	 address = address + 4'b1;
+	 if(check_flag)
+      $display("successed item %d",i);
+     else
+      $display("failed item %d",i);
+    end
+	#clock_per
+	
+   //-------------test 3-- shift coloumn ----------//
+   shifting();
+   $display("test 3--shift coloumn");
+   address = 4'b00;
+   for(i=0;i<=15;i=i+1)
+    begin
+     output_data(shift_mem[i],address);
+	 address = address + 4'b1;
+	 if(check_flag)
+      $display("successed item %d",i);
+     else
+      $display("failed item %d",i);
+    end
+	#clock_per
+  
+	
+	//-------------test 4-- mix  coloumn ----------//
+   mixing();
+   $display("test 4--mix coulmn");
+   address = 4'b00;
+   for(i=0;i<=15;i=i+1)
+    begin
+     output_data(mix_mem[i],address);
+	 address = address + 4'b1;
+	 if(check_flag)
+      $display("successed item %d",i);
+     else
+      $display("failed item %d",i);
+    end
+	*/
+   #100
+   $finish;
+  end
+  
+  
+ /////////////////tasks////////////////////////////
+ 
+ /*task initialize;
+  begin
+   CS_tb  = 1'b0;
+   RST_tb = 1'b1;
+  end
+ endtask
+  
+ task Reset;
+  begin
+   RST_tb = 1'b1;
+   #10
+   RST_tb = 1'b0;
+   #10
+   RST_tb = 1'b1;
+  end
+ endtask
+ 
+ task input_data;
+ input [7:0]  input_D;
+ input [3:0]  addres;
+ begin
+  #clock_per
+  CS_tb		= 1'b1;
+  RWSM_tb	= 2'b01;
+  DataIN_tb = input_D;
+  Add_tb    = addres;
+ end
+ endtask
+ 
+ task output_data;
+ input [7:0]  output_D;
+ input [3:0]  addres;
+ begin
+  #clock_per
+  CS_tb		= 1'b1;
+  RWSM_tb	= 2'b00;
+  Add_tb    = addres;
+  if(DataOUT_tb==output_D)
+   check_flag = 1'b1;
+  else
+   check_flag = 1'b0;  
+ end
+ endtask 
+ 
+ task sboxing;
+  begin
+   #clock_per
+   CS_tb		= 1'b1;
+   operation_tb	= 1'b0;
+   #clock_per
+   CS_tb		= 1'b0;
+  end
+ endtask
+  
+ task shifting;
+  begin
+   #clock_per
+   CS_tb		= 1'b1;
+   RWSM_tb		= 2'b10;
+   #clock_per
+   CS_tb		= 1'b0;
+  end
+ endtask
+ 
+ task mixing;
+  begin
+   #clock_per
+   CS_tb		= 1'b1;
+   RWSM_tb		= 2'b11;
+   #clock_per
+   CS_tb		= 1'b0;
+  end
+ endtask
+ 
+ data_Mem DUT(
+ .DataIN(DataIN_tb),
+ .Add(Add_tb),
+ .RST(RST_tb), 
+ .CS(CS_tb),
+ .RWSM(RWSM_tb),
+ .operation(operation_tb),
+ .DataOUT(DataOUT_tb)
+ );
+ */
+ endmodule
